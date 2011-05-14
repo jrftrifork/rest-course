@@ -1,0 +1,13 @@
+To run the project on an embedded Glassfish app server,
+make sure nothing else i listening on port 8080
+(on Mac/Linux run 'lsof -i :8080' in a terminal)
+Then run the command
+mvn install embedded-glassfish:run
+
+to produce .classpath and .project files for Eclipse, run
+mvn eclipse:eclipse
+and afterwards open the .project file from within Eclise
+
+Go to
+http://localhost:8080/rest-server/myresource
+in a browser and verify that the text "Jersey is working" is shown.
