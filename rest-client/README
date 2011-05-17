@@ -1,0 +1,3 @@
+To execute the main class HrClient, run
+mvn integration-test
+in a command promt
