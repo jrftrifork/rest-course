@@ -9,10 +9,7 @@ import org.apache.log4j.Logger;
 
 import javax.persistence.EntityNotFoundException;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.core.*;
 import java.net.URI;
 
 @Path("/employee")
@@ -55,8 +52,12 @@ public class EmployeeResource {
         Link selfLink = new Link(Link.REL_SELF, uriInfo.getRequestUri());
 
         EmployeeRepresentation employeeRepr = new EmployeeRepresentation(employee, selfLink);
+
+        CacheControl caching = new CacheControl();
+        caching.setPrivate(true);
+        caching.setMaxAge(240);
         
-        return Response.ok().entity(employeeRepr).build();
+        return Response.ok().cacheControl(caching).entity(employeeRepr).build();
     }
 
     @DELETE
