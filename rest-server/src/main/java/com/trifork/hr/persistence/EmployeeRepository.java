@@ -32,7 +32,9 @@ public class EmployeeRepository {
         em.remove(get(id));
     }
 
+    @SuppressWarnings("unchecked")
     public List<Employee> listAll() {
         return em.createQuery("SELECT e from Employee e").getResultList();
     }
 }
+
