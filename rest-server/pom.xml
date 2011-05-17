@@ -26,7 +26,6 @@
                     <app>target/rest-server.war</app>
                     <port>8080</port>
                     <contextRoot>rest-server</contextRoot>
-                    <!--<configFile>${basedir}/domain.xml</configFile>-->
                 </configuration>
                 <executions>
                     <execution>

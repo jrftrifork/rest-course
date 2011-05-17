@@ -6,13 +6,14 @@ import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
-@XmlRootElement(name = "Employee")
+@XmlRootElement
 public class Employee {
     private long id;
     String name;
+    EmployeeStatus status = EmployeeStatus.ACTIVE;
 
     public Employee() {
-
+        // used by JPA
     }
 
     public Employee(String name) {
@@ -35,5 +36,23 @@ public class Employee {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public EmployeeStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(EmployeeStatus status) {
+        this.status = status;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Employee[" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", status='" + status + '\'' +
+                ']';
     }
 }

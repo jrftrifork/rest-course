@@ -5,6 +5,7 @@ import com.trifork.hr.model.Employee;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
+import java.util.List;
 
 public class EmployeeRepository {
     private static EntityManager em = Persistence.createEntityManagerFactory("hr").createEntityManager();
@@ -25,5 +26,13 @@ public class EmployeeRepository {
         final Employee employee = em.find(Employee.class, id);
         if (employee == null) throw new EntityNotFoundException("" + id);
         return employee;
+    }
+
+    public void remove(long id) {
+        em.remove(get(id));
+    }
+
+    public List<Employee> listAll() {
+        return em.createQuery("SELECT e from Employee e").getResultList();
     }
 }
