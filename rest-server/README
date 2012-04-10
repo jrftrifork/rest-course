@@ -6,7 +6,10 @@ mvn install embedded-glassfish:run
 
 to produce .classpath and .project files for Eclipse, run
 mvn eclipse:eclipse
-and afterwards open the .project file from within Eclise
+and afterwards open the .project file from within Eclipse
+
+You need a classpath variable in Eclipse named M2_REPO to point at the repository folder inside your .m2 repository. 
+Some Eclipse distributions have this by default, some don't.
 
 Go to
 http://localhost:8080/rest-server/myresource
