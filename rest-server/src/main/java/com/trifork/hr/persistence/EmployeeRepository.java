@@ -28,11 +28,12 @@ public class EmployeeRepository {
         return employee;
     }
 
-    public void remove(long id) {
+	@SuppressWarnings({"unchecked", "UnusedDeclaration"})
+	public void remove(long id) {
         em.remove(get(id));
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({"unchecked", "UnusedDeclaration"})
     public List<Employee> listAll() {
         return em.createQuery("SELECT e from Employee e").getResultList();
     }
