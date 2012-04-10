@@ -7,6 +7,10 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
 import java.util.List;
 
+/**
+ * Simple repository for Employees.
+ * Use simply by calling <code>new EmployeeRepository()</code>.
+ */
 public class EmployeeRepository {
     private static EntityManager em = Persistence.createEntityManagerFactory("hr").createEntityManager();
 
