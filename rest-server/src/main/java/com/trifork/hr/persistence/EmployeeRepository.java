@@ -20,9 +20,14 @@ public class EmployeeRepository {
 	public static Employee save(Employee empl) {
 		if (empl.getId() == 0) {
 			empl.setId(findMaxId() + 1);
+		} else {
+			Employee existingEmpl = get(empl.getId());
+			db.remove(existingEmpl);
 		}
-		
+
 		db.add(empl);
+
+
 
 		return empl;
 	}
