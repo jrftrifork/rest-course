@@ -1,45 +1,81 @@
 package com.trifork.hr.persistence;
 
 import com.trifork.hr.model.Employee;
+import com.trifork.hr.resource.EmployeeResource;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * Simple repository for Employees.
- * Use simply by calling <code>new EmployeeRepository()</code>.
  */
 public class EmployeeRepository {
-    private static EntityManager em = Persistence.createEntityManagerFactory("hr").createEntityManager();
+	private static List<Employee> db = new ArrayList<Employee>();
 
-    static {
-        em.merge(new Employee("Test 1"));
-        em.merge(new Employee("Test 2"));
-    }
+	static {
+		EmployeeRepository.save(new Employee("Test 1"));
+		EmployeeRepository.save(new Employee("Test 2"));
+	}
 
-    public Employee save(Employee empl) {
-        return em.merge(empl);
-    }
+	public static Employee save(Employee empl) {
+		if (empl.getId() == 0) {
+			empl.setId(findMaxId() + 1);
+		}
+		
+		db.add(empl);
 
-    /**
-     * @throw EntitytNotFoundException if the Employee indicated by parameter <code>id</code> does not exist
-     */
-    public Employee get(long id) {
-        final Employee employee = em.find(Employee.class, id);
-        if (employee == null) throw new EntityNotFoundException("" + id);
-        return employee;
-    }
+		return empl;
+	}
+
+	private static long findMaxId() {
+		long maxFound = 0;
+		for(Employee emp: db) {
+			if (emp.getId() > maxFound) {
+				maxFound = emp.getId();
+			}
+		}
+
+		return maxFound;
+	}
+
+	/**
+	 * @throw EntitytNotFoundException if the Employee indicated by parameter <code>id</code> does not exist
+	 */
+	public Employee get(long id) {
+		Employee employee = null;
+
+		for(Employee emp: db) {
+			if (emp.getId() == id) {
+				employee = emp;
+			}
+		}
+
+		if (employee == null) throw new EntityNotFoundException("" + id);
+		return employee;
+	}
 
 	@SuppressWarnings({"unchecked", "UnusedDeclaration"})
-	public void remove(long id) {
-        em.remove(get(id));
-    }
+	public static void remove(long id) {
+		Employee employee = null;
 
-    @SuppressWarnings({"unchecked", "UnusedDeclaration"})
-    public List<Employee> listAll() {
-        return em.createQuery("SELECT e from Employee e").getResultList();
-    }
+		for(Employee emp: db) {
+			if (emp.getId() == id) {
+				employee = emp;
+			}
+		}
+
+		if (employee != null) {
+			db.remove(employee);
+		}
+	}
+
+	@SuppressWarnings({"unchecked", "UnusedDeclaration"})
+	public static List<Employee> listAll() {
+		return db;
+	}
 }
 
