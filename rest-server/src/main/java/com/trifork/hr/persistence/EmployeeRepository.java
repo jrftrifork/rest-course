@@ -1,13 +1,9 @@
 package com.trifork.hr.persistence;
 
 import com.trifork.hr.model.Employee;
-import com.trifork.hr.resource.EmployeeResource;
 
-import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
-import javax.persistence.Persistence;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
