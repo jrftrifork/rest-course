@@ -41,7 +41,7 @@ public class EmployeeRepository {
 	/**
 	 * @throw EntitytNotFoundException if the Employee indicated by parameter <code>id</code> does not exist
 	 */
-	public Employee get(long id) {
+	public static Employee get(long id) {
 		Employee employee = null;
 
 		for(Employee emp: db) {
