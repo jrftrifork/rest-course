@@ -18,6 +18,6 @@ public class MyResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String getIt() {
-        return "Jersey is working still";
+        return "Jersey is working";
     }
 }
