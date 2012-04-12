@@ -23,11 +23,20 @@ public class HrClient {
         Employee employee = getEmployee(employeeUri);
         System.out.println("Retrived new employee from server: " + employee);
 
-        deleteEmployee(employeeUri);
+	    employee.name = "Client has a new name";
+	    updateEmployee(employee, employeeUri);
+
+	    Employee updatedEmployee = getEmployee(employeeUri);
+	    System.out.println("Retrived updated employee from server: " + updatedEmployee);
+	    if (!updatedEmployee.name.equals(employee.name)) {
+		    throw new RuntimeException("Updated employee name was not as expected " + employee.name + ", but rather " + updatedEmployee.name);
+	    }
+
+	    deleteEmployee(employeeUri);
 
         try {
             getEmployee(employeeUri);
-            System.out.println("This is strange! Employee " + employeeUri + " exists after delete");
+            throw new RuntimeException("This is strange! Employee " + employeeUri + " exists after delete");
         } catch (UniformInterfaceException e) {
             if (e.getResponse().getClientResponseStatus() != Status.NOT_FOUND) {
                 throw new RuntimeException("Expected 404 for employee after deletion, " + describeStatus(e.getResponse()));
@@ -35,13 +44,6 @@ public class HrClient {
                 System.out.println("As expected, " + e.getResponse().toString());
             }
         }
-
-        employee.name = "Client has a new name";
-        updateEmployee(employee, employeeUri);
-
-        Employee updatedEmployee = getEmployee(employeeUri);
-        System.out.println("Retrived updated employee from server: " + updatedEmployee);
-
     }
 
     private static Employee getEmployee(URI employeeUri) {
