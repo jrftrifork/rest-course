@@ -1,13 +1,13 @@
 package com.trifork.hr.resource;
 
 import com.trifork.hr.model.Employee;
+import com.trifork.hr.persistence.EmployeeNotFoundException;
 import com.trifork.hr.persistence.EmployeeRepository;
 import com.trifork.hr.representation.EmployeeListRepresentation;
 import com.trifork.hr.representation.EmployeeRepresentation;
 import com.trifork.hr.representation.Link;
 import org.apache.log4j.Logger;
 
-import javax.persistence.EntityNotFoundException;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import java.net.URI;
@@ -45,7 +45,7 @@ public class EmployeeResource {
         Employee employee;
         try {
             employee = repository.get(id);
-        } catch (EntityNotFoundException e) {
+        } catch (EmployeeNotFoundException e) {
             return Response.status(Response.Status.NOT_FOUND).build();
         }
 
