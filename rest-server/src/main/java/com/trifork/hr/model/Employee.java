@@ -9,7 +9,11 @@ public class Employee {
     String name;
     EmployeeStatus status = EmployeeStatus.ACTIVE;
 
-    public Employee(String name) {
+	public Employee() {
+		// used by JAXB
+	}
+
+	public Employee(String name) {
         this.name = name;
     }
 
