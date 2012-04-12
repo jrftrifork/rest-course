@@ -28,8 +28,6 @@ public class EmployeeRepository {
 
 		db.add(empl);
 
-
-
 		return empl;
 	}
 
