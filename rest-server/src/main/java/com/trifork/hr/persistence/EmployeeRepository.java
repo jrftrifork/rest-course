@@ -9,6 +9,7 @@ import java.util.List;
 /**
  * Simple repository for Employees.
  */
+@SuppressWarnings("UnusedDeclaration")
 public class EmployeeRepository {
 	private static List<Employee> db = new ArrayList<Employee>();
 
@@ -44,7 +45,7 @@ public class EmployeeRepository {
 	}
 
 	/**
-	 * @throw EntitytNotFoundException if the Employee indicated by parameter <code>id</code> does not exist
+	 * @throws EntityNotFoundException if the Employee indicated by parameter <code>id</code> does not exist
 	 */
 	public static Employee get(long id) {
 		Employee employee = null;
@@ -59,7 +60,7 @@ public class EmployeeRepository {
 		return employee;
 	}
 
-	@SuppressWarnings({"unchecked", "UnusedDeclaration"})
+	@SuppressWarnings("UnusedDeclaration")
 	public static void remove(long id) {
 		Employee employee = null;
 
@@ -74,7 +75,7 @@ public class EmployeeRepository {
 		}
 	}
 
-	@SuppressWarnings({"unchecked", "UnusedDeclaration"})
+	@SuppressWarnings("UnusedDeclaration")
 	public static List<Employee> listAll() {
 		return db;
 	}
