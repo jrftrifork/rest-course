@@ -1,3 +1,4 @@
 To execute the main class HrClient, run
 mvn integration-test
 in a command promt
+or run the class from within your IDE

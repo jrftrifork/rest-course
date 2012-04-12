@@ -13,7 +13,7 @@ import java.net.URI;
 import static com.sun.jersey.api.client.ClientResponse.*;
 
 public class HrClient {
-    public static final String BASE_URI = "http://localhost:8080/rest-server/";
+    public static final String BASE_URI = "http://localhost:8080/";
     public static final String REL_CREATE_EMPLOYEE = "http://com.trifork/hr/createemployee";
 
     public static void main( String[] args ) {
