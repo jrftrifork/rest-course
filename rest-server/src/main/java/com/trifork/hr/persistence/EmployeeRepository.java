@@ -2,7 +2,6 @@ package com.trifork.hr.persistence;
 
 import com.trifork.hr.model.Employee;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +42,7 @@ public class EmployeeRepository {
 	}
 
 	/**
-	 * @throws EntityNotFoundException if the Employee indicated by parameter <code>id</code> does not exist
+	 * @throws EmployeeNotFoundException if the Employee indicated by parameter <code>id</code> does not exist
 	 */
 	public static Employee get(long id) {
 		Employee employee = null;
@@ -54,7 +53,7 @@ public class EmployeeRepository {
 			}
 		}
 
-		if (employee == null) throw new EntityNotFoundException("" + id);
+		if (employee == null) throw new EmployeeNotFoundException(id);
 		return employee;
 	}
 

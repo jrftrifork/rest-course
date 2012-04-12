@@ -1,27 +1,18 @@
 package com.trifork.hr.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@Entity
+@SuppressWarnings("UnusedDeclaration")
 @XmlRootElement
 public class Employee {
     private long id;
     String name;
     EmployeeStatus status = EmployeeStatus.ACTIVE;
 
-    public Employee() {
-        // used by JPA
-    }
-
     public Employee(String name) {
         this.name = name;
     }
 
-    @Id
-    @GeneratedValue
     public long getId() {
         return id;
     }
