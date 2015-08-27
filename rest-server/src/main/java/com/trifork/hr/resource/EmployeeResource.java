@@ -72,11 +72,12 @@ public class EmployeeResource {
         if (toUpdate.getId() != id) {
             Response.status(Response.Status.BAD_REQUEST).entity("Will not change employee at URI " + uriInfo.getRequestUri() + " to have id " + toUpdate.getId());
         }
-	    try {
+        
+	try {
             repository.save(toUpdate);
-	    } catch (EmployeeNotFoundException e) {
+	} catch (EmployeeNotFoundException e) {
 		    return Response.status(Response.Status.NOT_FOUND).build();
-	    }
+	}
 
         return Response.noContent().build();
     }
